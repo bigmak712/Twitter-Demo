@@ -10,7 +10,7 @@ import UIKit
 import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
-
+    
     static let sharedInstance = TwitterClient(baseURL: URL(string: "https://api.twitter.com")!, consumerKey: "pG9joc0pqDUKBo95qyr61o5vz", consumerSecret: "uPVqACWODkKkyhDIUFoxXhnBbZHtwgWTqpDAMHYh0LEYHyLAwz")
 
     var loginSuccess: (() -> ())?
@@ -31,13 +31,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
+    }
+    
     func handleOpenUrl(url: URL) {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken : BDBOAuth1Credential?) -> Void in
 
-            self.loginSuccess?()
-            
+            self.currentAccount(success: { (user: User) -> () in
+                User.currentUser = user
+                self.loginSuccess?()
+            }, failure: { (error: Error) -> () in
+                self.loginFailure?(error)
+            })
         }) { (error: Error?) -> Void in
             print("error: \(error?.localizedDescription)")
             self.loginFailure?(error!)
@@ -59,21 +70,16 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount(){
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error) -> ()){
        get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) -> Void in
             
             let userDictionary = response as! NSDictionary
-            //print("user: \(user)")
-            
             let user = User(dictionary: userDictionary)
-            
-            print("name: \(user.name)")
-            print("screenname: \(user.screenname)")
-            print("profile url: \(user.profileUrl)")
-            print("description: \(user.tagline)")
-            
+        
+            success(user)
+        
         }, failure: { (task: URLSessionDataTask?, error: Error) -> Void in
-            
+            failure(error)
         })
     }
 }
