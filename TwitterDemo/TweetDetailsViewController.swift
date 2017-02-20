@@ -14,7 +14,7 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var photoButton: UIButton!
     
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoriteCountLabel: UILabel!
@@ -31,7 +31,11 @@ class TweetDetailsViewController: UIViewController {
         profileNameLabel.text = tweet.name as String!
         userNameLabel.text = "@" + String(tweet.screenname!)
         descriptionLabel.text = tweet.text as String!
-        photoImageView.setImageWith(tweet.profileUrl as! URL)
+        
+        if let photoData = NSData(contentsOf: tweet.profileUrl as! URL) {
+            photoButton.setImage(UIImage(data: photoData as Data), for: .normal)
+        }
+        
         
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -64,5 +68,8 @@ class TweetDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
 
 }

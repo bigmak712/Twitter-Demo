@@ -73,13 +73,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! TweetDetailsViewController
-        let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
-        let tweet = tweets[(indexPath?.row)!]
+        if segue.identifier == "detailSegue" {
+            let vc = segue.destination as! TweetDetailsViewController
+            let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
+            let tweet = tweets[(indexPath?.row)!]
         
-        vc.tweet = tweet
+            vc.tweet = tweet
+            
+            let cell = sender as! UITableViewCell
+            cell.selectionStyle = .gray
+        }
+        else if segue.identifier == "profileSegue" {
+            
+        }
         
-        let cell = sender as! UITableViewCell
-        cell.selectionStyle = .gray
+        
     }
 }
