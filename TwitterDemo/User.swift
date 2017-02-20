@@ -22,7 +22,8 @@ class User: NSObject {
         
         name = dictionary["name"] as? String as NSString?
         screenname = dictionary["screen_name"] as? String as NSString?
-        
+        tagline = dictionary["description"] as? String as NSString?
+
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString {
             profileUrl = NSURL(string: profileUrlString)
@@ -31,24 +32,27 @@ class User: NSObject {
             profileUrl = NSURL(string: "")
         }
         
-        tagline = dictionary["description"] as? String as NSString?
     }
     
     static let userDidLogoutNotification = "UserDidLogout"
     
     static var _currentUser: User?
     
-    static var currentUser: User? {
+    class var currentUser: User? {
         get {
-            let defaults = UserDefaults.standard
-            let userData = defaults.object(forKey: "currentUserData") as? NSData
+            if _currentUser == nil{
+                let defaults = UserDefaults.standard
+                let userData = defaults.object(forKey: "currentUserData") as? Data
             
-            if let userData = userData {
-                if let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: []) as? NSDictionary{
-                _currentUser = User(dictionary: dictionary)
-                }
-                else {
-                    _currentUser = nil
+                if let userData = userData {
+                    let dict = try! JSONSerialization.jsonObject(with: userData, options: []) 
+                    _currentUser = User(dictionary: dict as! NSDictionary)
+                    /*if let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: []) as? NSDictionary{
+                        _currentUser = User(dictionary: dictionary)
+                    }
+                    else{
+                        _currentUser = nil
+                    }*/
                 }
             }
             return _currentUser
@@ -56,19 +60,15 @@ class User: NSObject {
         
         set(user) {
             _currentUser = user
-            
             let defaults = UserDefaults.standard
             
             if let user = _currentUser{
-                let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
-                
+                let data = try! JSONSerialization.data(withJSONObject: user.dictionary ?? [], options: [])
                 defaults.set(data, forKey: "currentUserData")
             }
             else {
-                defaults.set(nil, forKey: "currentUserData")
+                defaults.removeObject(forKey: "currentUserData")
             }
-            
-            //defaults.set(user, forKey: "currentUser")
             
             defaults.synchronize()
         }
