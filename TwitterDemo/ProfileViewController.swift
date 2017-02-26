@@ -19,19 +19,16 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followersCountLabel: UILabel!
     
     var user: User!
-    var tweet: Tweet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if tweet.user != nil {
+        if user != nil {
             print("user is not nil")
         }
         else {
             print("user is nil")
         }
-        
-        user = tweet.user
         
         if user.backgroundUrl != NSURL(string: "") {
             coverImageView.setImageWith(user.backgroundUrl as! URL)

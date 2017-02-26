@@ -96,7 +96,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let cell = button.superview?.superview as! UITableViewCell
                 let indexPath = tableView.indexPath(for: cell)
                 let tweet = tweets[(indexPath?.row)!]
-                
+                vc.user = tweet.user
                 print("username: " + String(describing: tweet.user!.name!))
             }
         }
