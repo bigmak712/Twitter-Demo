@@ -36,7 +36,6 @@ class TweetDetailsViewController: UIViewController {
             photoButton.setImage(UIImage(data: photoData as Data), for: .normal)
         }
         
-        
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short

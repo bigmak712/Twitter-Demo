@@ -62,6 +62,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance?.logout()
     }
 
+    @IBAction func onProfileButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "profileSegue", sender: self)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -73,20 +77,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        
         if segue.identifier == "detailSegue" {
             let vc = segue.destination as! TweetDetailsViewController
+            
             let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
             let tweet = tweets[(indexPath?.row)!]
-        
             vc.tweet = tweet
-            
+
             let cell = sender as! UITableViewCell
             cell.selectionStyle = .gray
         }
         else if segue.identifier == "profileSegue" {
+            let vc = segue.destination as! ProfileViewController
             
+            if let button = sender as? UIButton {
+                let cell = button.superview?.superview as! UITableViewCell
+                let indexPath = tableView.indexPath(for: cell)
+                let tweet = tweets[(indexPath?.row)!]
+                
+                print("username: " + String(describing: tweet.user!.name!))
+            }
         }
-        
-        
     }
 }
