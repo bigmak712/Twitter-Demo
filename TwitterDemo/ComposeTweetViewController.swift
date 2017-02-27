@@ -65,11 +65,16 @@ class ComposeTweetViewController: UIViewController, UITextViewDelegate {
     */
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let status = tweetTextView.text!
+        
+        print("preparing to sent tweet")
+        
         if segue.identifier == "homeSegue" {
-            TwitterClient.sharedInstance?.sendTweet(status: tweetTextView.text, success: {
+            print("in home segue")
+            TwitterClient.sendTweet(status: status, callBack: { (tweet, error) in
                 self.tweetTextView.text = ""
-            }, failure: { (error: Error) in
-                print(error.localizedDescription)
+                self.tweetTextView.endEditing(true)
+                print("tweet sent")
             })
         }
     }
