@@ -84,7 +84,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func retweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
-        post("1.1/statuses/retweet/:id.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("1.1/statuses/retweet/\(tweetID).json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let tweetDictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: tweetDictionary)
@@ -96,7 +96,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func unretweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
-        post("1.1/statuses/unretweet/:id.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("1.1/statuses/unretweet/\(tweetID).json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let tweetDictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: tweetDictionary)
@@ -108,7 +108,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func favorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
-        post("1.1/favorites/create.json?", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("1.1/favorites/create.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let responseDictionary = response as! NSDictionary
             let tweet = Tweet.init(dictionary: responseDictionary)
@@ -120,7 +120,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func unfavorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
-        post("1.1/favorites/destroy.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("https://api.twitter.com/1.1/favorites/destroy.json?id=" + String(tweetID), parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let responseDictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: responseDictionary)

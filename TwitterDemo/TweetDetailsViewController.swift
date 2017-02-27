@@ -69,6 +69,8 @@ class TweetDetailsViewController: UIViewController {
         if didFavorite {
             TwitterClient.sharedInstance?.favorite(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.favoriteCountLabel.text = String(tweet.favoritesCount)
+                self.favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: .normal)
+
             }, failure: { (error: Error) in
                 print(error.localizedDescription)
             })
@@ -76,6 +78,7 @@ class TweetDetailsViewController: UIViewController {
         else {
             TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.favoriteCountLabel.text = String(tweet.favoritesCount)
+                self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
             }, failure: { (error: Error) in
                 print(error.localizedDescription)
             })
