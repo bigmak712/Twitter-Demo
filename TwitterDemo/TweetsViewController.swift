@@ -98,7 +98,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let tweet = tweets[(indexPath?.row)!]
                 vc.user = tweet.user
                 print("username: " + String(describing: tweet.user!.name!))
-                if tweet.user != nil {
+                if vc.user != nil {
                     print("user is not nil")
                 }
                 else {
