@@ -23,7 +23,11 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    var didRetweet: Bool = false
+    var didFavorite: Bool = false
+    
     var tweet: Tweet!
+    var tweetID: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +53,35 @@ class TweetDetailsViewController: UIViewController {
         retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
         favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
         
+        tweetID = tweet.tweetID
+        
         // Do any additional setup after loading the view.
     }
 
+    
+    @IBAction func onReply(_ sender: Any) {
+    }
+    
+    @IBAction func onRetweet(_ sender: Any) {
+    }
+    
+    @IBAction func onFavorite(_ sender: Any) {
+        if didFavorite {
+            TwitterClient.sharedInstance?.favorite(tweetID: tweetID, success: { (tweet: Tweet) in
+                self.favoriteCountLabel.text = String(tweet.favoritesCount)
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+        }
+        else {
+            TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
+                self.favoriteCountLabel.text = String(tweet.favoritesCount)
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

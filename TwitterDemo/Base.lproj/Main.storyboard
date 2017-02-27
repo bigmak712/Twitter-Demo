@@ -264,16 +264,25 @@
                                 <rect key="frame" x="16" y="209" width="43" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onReply:" destination="3lF-Yb-yVy" eventType="touchUpInside" id="GLv-gM-mcf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBX-37-MpZ">
                                 <rect key="frame" x="123" y="209" width="43" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onRetweet:" destination="3lF-Yb-yVy" eventType="touchUpInside" id="CD8-OG-gEf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIP-qS-Agb">
                                 <rect key="frame" x="230" y="208.5" width="43" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="onFavorite:" destination="3lF-Yb-yVy" eventType="touchUpInside" id="OlV-oc-n5R"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSd-w7-iEe">
                                 <rect key="frame" x="8" y="246" width="359" height="1"/>

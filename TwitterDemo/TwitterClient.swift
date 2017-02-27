@@ -82,4 +82,53 @@ class TwitterClient: BDBOAuth1SessionManager {
             failure(error)
         })
     }
+    
+    func retweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
+        post("1.1/statuses/retweet/:id.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            let tweetDictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: tweetDictionary)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
+    func unretweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
+        post("1.1/statuses/unretweet/:id.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            let tweetDictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: tweetDictionary)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
+    func favorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
+        post("1.1/favorites/create.json?", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            let responseDictionary = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: responseDictionary)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
+    func unfavorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
+        post("1.1/favorites/destroy.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            
+            let responseDictionary = response as! NSDictionary
+            let tweet = Tweet(dictionary: responseDictionary)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        }
+    }
+    
 }
