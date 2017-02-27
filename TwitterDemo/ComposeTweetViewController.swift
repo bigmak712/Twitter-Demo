@@ -8,22 +8,49 @@
 
 import UIKit
 
-class ComposeTweetViewController: UIViewController {
+class ComposeTweetViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var profilePhotoButton: UIButton!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
+    @IBOutlet weak var sendTweetButton: UIButton!
+    
+    var replyText: String = ""
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tweetTextView.delegate = self
+        
+        if let photoData = NSData(contentsOf: user.profileUrl as! URL) {
+            profilePhotoButton.setImage(UIImage(data: photoData as Data), for: .normal)
+        }
+        else {
+            profilePhotoButton.setImage(UIImage(named: "profile-Icon"), for: .normal)
+        }
+            
+        profileNameLabel.text = String(describing: user.name!)
+        userNameLabel.text = "@" + String(describing: user.screenname!)
+        tweetTextView.text = replyText
+        sendTweetButton.isEnabled = false
+        
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if tweetTextView.text.isEmpty {
+            sendTweetButton.isEnabled = false
+        }
+        else {
+            sendTweetButton.isEnabled = true
+        }
     }
     
 
@@ -37,4 +64,13 @@ class ComposeTweetViewController: UIViewController {
     }
     */
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "homeSegue" {
+            TwitterClient.sharedInstance?.sendTweet(status: tweetTextView.text, success: {
+                self.tweetTextView.text = ""
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+        }
+    }
 }

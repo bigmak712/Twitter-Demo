@@ -28,9 +28,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> () in
             
             self.tweets = tweets
+            /*
             for tweet in tweets {
                 print(tweet.text!)
             }
+            */
             self.tableView.reloadData()
             
         }, failure: { (error: Error) in
@@ -100,10 +102,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
         else if segue.identifier == "composeSegue" {
             let vc = segue.destination as! ComposeTweetViewController
-            
+            vc.user = User.currentUser
         }
         else if segue.identifier == "replySegue" {
-            
+            let vc = segue.destination as! ComposeTweetViewController
+            if let button = sender as? UIButton {
+                let cell = button.superview?.superview as! UITableViewCell
+                let indexPath = tableView.indexPath(for: cell)
+                let tweet = tweets[(indexPath?.row)!]
+                vc.user = tweet.user
+                vc.replyText = "@" + String(describing: tweet.screenname!)
+            }
         }
     }
 }
