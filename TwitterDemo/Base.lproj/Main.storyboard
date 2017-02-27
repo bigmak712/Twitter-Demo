@@ -64,7 +64,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kcM-o4-Ptw" id="wky-vf-jFu">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYn-aq-6ez" userLabel="Profile Name Label">
@@ -126,7 +126,6 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
-                                                        <action selector="onProfileButton:" destination="fFC-cA-bvt" eventType="touchUpInside" id="e3P-lT-8CE"/>
                                                         <segue destination="HWk-XJ-Iqd" kind="push" identifier="profileSegue" id="VgJ-Wh-aaf"/>
                                                     </connections>
                                                 </button>
@@ -537,6 +536,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sse-rC-rNH"/>
+        <segue reference="VgJ-Wh-aaf"/>
     </inferredMetricsTieBreakers>
 </document>

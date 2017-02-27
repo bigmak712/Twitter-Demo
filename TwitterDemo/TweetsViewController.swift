@@ -62,10 +62,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance?.logout()
     }
 
-    @IBAction func onProfileButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "profileSegue", sender: self)
-    }
-    
     /*
     // MARK: - Navigation
 
@@ -97,13 +93,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let indexPath = tableView.indexPath(for: cell)
                 let tweet = tweets[(indexPath?.row)!]
                 vc.user = tweet.user
-                print("username: " + String(describing: tweet.user!.name!))
-                if vc.user != nil {
-                    print("user is not nil")
-                }
-                else {
-                    print("user is nil")
-                }
             }
         }
     }

@@ -32,6 +32,8 @@ class TweetDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("In TweetsDetailsViewController")
+        
         profileNameLabel.text = tweet.name as String!
         userNameLabel.text = "@" + String(tweet.screenname!)
         descriptionLabel.text = tweet.text as String!
@@ -60,12 +62,16 @@ class TweetDetailsViewController: UIViewController {
 
     
     @IBAction func onReply(_ sender: Any) {
+        print("reply")
     }
     
     @IBAction func onRetweet(_ sender: Any) {
+        print("retweet")
     }
     
     @IBAction func onFavorite(_ sender: Any) {
+        print("favorite")
+        
         if didFavorite {
             TwitterClient.sharedInstance?.favorite(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.favoriteCountLabel.text = String(tweet.favoritesCount)
@@ -101,7 +107,13 @@ class TweetDetailsViewController: UIViewController {
     }
     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "profileSegue" {
+            let vc = segue.destination as! ProfileViewController
+            
+            if (sender as? UIButton) != nil {
+                vc.user = tweet.user
+            }
+        }
     }
 
 }

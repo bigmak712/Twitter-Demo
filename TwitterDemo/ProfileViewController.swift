@@ -23,13 +23,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if user != nil {
-            print("user is not nil")
-        }
-        else {
-            print("user is nil")
-        }
-        
         if user.backgroundUrl != NSURL(string: "") {
             coverImageView.setImageWith(user.backgroundUrl as! URL)
         }
