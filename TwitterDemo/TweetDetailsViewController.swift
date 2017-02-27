@@ -45,51 +45,85 @@ class TweetDetailsViewController: UIViewController {
         formatter.timeStyle = .short
         let timestamp = formatter.string(from: tweet.timestamp as! Date)
         timestampLabel.text = String(timestamp)
-
-        retweetCountLabel.text = String(tweet.retweetCount)
-        favoriteCountLabel.text = String(tweet.favoritesCount)
         
         replyButton.setImage(UIImage(named: "reply-icon") , for: .normal)
-        retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
-        favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
-        
-        didRetweet = tweet.retweeted
-        didFavorite = tweet.favorited
-        
+
         tweetID = tweet.tweetID
         
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        retweetCountLabel.text = String(tweet.retweetCount)
+        favoriteCountLabel.text = String(tweet.favoritesCount)
+        
+        didRetweet = tweet.retweeted
+        didFavorite = tweet.favorited
+        
+        if didRetweet {
+            retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: .normal)
+        }
+        else {
+            retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
+        }
+        if didFavorite {
+            favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: .normal)
+        }
+        else {
+            favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
+        }
+    }
     
     @IBAction func onReply(_ sender: Any) {
         print("reply")
     }
     
     @IBAction func onRetweet(_ sender: Any) {
-        print("retweet")
+        
+        if didRetweet {
+            TwitterClient.sharedInstance?.unretweet(tweetID: tweetID, success: { (tweet: Tweet) in
+                self.retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+            tweet.retweetCount -= 1
+        }
+            
+        else {
+            TwitterClient.sharedInstance?.retweet(tweetID: tweetID, success: { (tweet: Tweet) in
+                self.retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: .normal)
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+            tweet.retweetCount += 1
+        }
+        self.retweetCountLabel.text = String(tweet.retweetCount)
+        tweet.retweeted = !tweet.retweeted
+        didRetweet = !didRetweet
     }
     
     @IBAction func onFavorite(_ sender: Any) {
         
         if didFavorite {
             TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
-                self.favoriteCountLabel.text = String(tweet.favoritesCount)
                 self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
             }, failure: { (error: Error) in
                 print(error.localizedDescription)
             })
+            tweet.favoritesCount -= 1
         }
+            
         else {
             TwitterClient.sharedInstance?.favorite(tweetID: tweetID, success: { (tweet: Tweet) in
-                self.favoriteCountLabel.text = String(tweet.favoritesCount)
                 self.favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: .normal)
 
             }, failure: { (error: Error) in
                 print(error.localizedDescription)
             })
+            tweet.favoritesCount += 1
         }
-        
+        self.favoriteCountLabel.text = String(tweet.favoritesCount)
+        tweet.favorited = !tweet.favorited
         didFavorite = !didFavorite
     }
     

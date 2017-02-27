@@ -11,16 +11,19 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var composeButton: UIButton!
     
     var tweets: [Tweet]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
+        
+        composeButton.setImage(UIImage(named: "edit-icon"), for: .normal)
         
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> () in
             
@@ -35,7 +38,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         })
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,6 +97,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let tweet = tweets[(indexPath?.row)!]
                 vc.user = tweet.user
             }
+        }
+        else if segue.identifier == "composeSegue" {
+            let vc = segue.destination as! ComposeTweetViewController
+            
+        }
+        else if segue.identifier == "replySegue" {
+            
         }
     }
 }

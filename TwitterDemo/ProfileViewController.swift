@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var tweetsCountLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var composeButton: UIButton!
     
     var user: User!
     
@@ -35,6 +36,7 @@ class ProfileViewController: UIViewController {
         tweetsCountLabel.text = String(user.tweetsCount)
         followingCountLabel.text = String(user.followingCount)
         followersCountLabel.text = String(user.followersCount)
+        composeButton.setImage(UIImage(named: "edit-icon"), for: .normal)
         
         // Do any additional setup after loading the view.
     }

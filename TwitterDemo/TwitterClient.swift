@@ -83,7 +83,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func retweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
+    func retweet(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         post("1.1/statuses/retweet/\(tweetID).json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let tweetDictionary = response as! NSDictionary
@@ -95,7 +95,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
-    func unretweet(success: @escaping (Tweet) -> (), failure: @escaping (Error) -> (), tweetID: Int) {
+    func unretweet(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         post("1.1/statuses/unretweet/\(tweetID).json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let tweetDictionary = response as! NSDictionary
