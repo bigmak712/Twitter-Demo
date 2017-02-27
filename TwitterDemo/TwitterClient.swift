@@ -108,7 +108,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func favorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
-        post("1.1/favorites/create.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("https://api.twitter.com/1.1/favorites/create.json?id=" + String(tweetID), parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let responseDictionary = response as! NSDictionary
             let tweet = Tweet.init(dictionary: responseDictionary)
@@ -120,7 +120,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func unfavorite(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()){
-        post("1.1/favorites/destroy.json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+        post("https://api.twitter.com/1.1/favorites/destroy.json?id=" + String(tweetID), parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             
             let responseDictionary = response as! NSDictionary
             let tweet = Tweet(dictionary: responseDictionary)

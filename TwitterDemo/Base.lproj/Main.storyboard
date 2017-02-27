@@ -388,7 +388,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4LV-ku-Vso">
-                                <rect key="frame" x="157" y="72" width="60" height="60"/>
+                                <rect key="frame" x="157" y="80" width="60" height="60"/>
                                 <color key="backgroundColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="59O-0a-iFv"/>
@@ -396,13 +396,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RxV-gl-Hma">
-                                <rect key="frame" x="166" y="140" width="42" height="21"/>
+                                <rect key="frame" x="166" y="148" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-7I-opi">
-                                <rect key="frame" x="166" y="169" width="42" height="21"/>
+                                <rect key="frame" x="166" y="177" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -477,7 +477,7 @@
                             <constraint firstItem="WnA-5V-bvv" firstAttribute="top" secondItem="wG3-Wn-yAb" secondAttribute="bottom" constant="16" id="B6e-Rn-iwR"/>
                             <constraint firstAttribute="trailing" secondItem="wG3-Wn-yAb" secondAttribute="trailing" id="DFn-sU-Ghf"/>
                             <constraint firstItem="mZg-5d-TiR" firstAttribute="leading" secondItem="6h4-e5-6Hb" secondAttribute="trailing" constant="24" id="F29-Zg-stG"/>
-                            <constraint firstItem="4LV-ku-Vso" firstAttribute="top" secondItem="uZC-3P-pZ0" secondAttribute="bottom" constant="8" id="J7J-Sy-Oej"/>
+                            <constraint firstItem="4LV-ku-Vso" firstAttribute="top" secondItem="uZC-3P-pZ0" secondAttribute="bottom" constant="16" id="J7J-Sy-Oej"/>
                             <constraint firstItem="PkM-yg-wNN" firstAttribute="top" secondItem="mZg-5d-TiR" secondAttribute="bottom" constant="16" id="Ka2-94-Ge8"/>
                             <constraint firstItem="PkM-yg-wNN" firstAttribute="top" secondItem="6h4-e5-6Hb" secondAttribute="bottom" id="LuS-jc-7ic"/>
                             <constraint firstItem="PkM-yg-wNN" firstAttribute="top" secondItem="ygY-YD-LRo" secondAttribute="bottom" constant="16" id="Rjk-fH-qBm"/>
@@ -536,6 +536,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VgJ-Wh-aaf"/>
+        <segue reference="sse-rC-rNH"/>
     </inferredMetricsTieBreakers>
 </document>

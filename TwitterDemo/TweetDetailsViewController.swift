@@ -31,9 +31,7 @@ class TweetDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("In TweetsDetailsViewController")
-        
+                
         profileNameLabel.text = tweet.name as String!
         userNameLabel.text = "@" + String(tweet.screenname!)
         descriptionLabel.text = tweet.text as String!
@@ -55,6 +53,9 @@ class TweetDetailsViewController: UIViewController {
         retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
         favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
         
+        didRetweet = tweet.retweeted
+        didFavorite = tweet.favorited
+        
         tweetID = tweet.tweetID
         
         // Do any additional setup after loading the view.
@@ -70,9 +71,16 @@ class TweetDetailsViewController: UIViewController {
     }
     
     @IBAction func onFavorite(_ sender: Any) {
-        print("favorite")
         
         if didFavorite {
+            TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
+                self.favoriteCountLabel.text = String(tweet.favoritesCount)
+                self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
+            }, failure: { (error: Error) in
+                print(error.localizedDescription)
+            })
+        }
+        else {
             TwitterClient.sharedInstance?.favorite(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.favoriteCountLabel.text = String(tweet.favoritesCount)
                 self.favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: .normal)
@@ -81,14 +89,8 @@ class TweetDetailsViewController: UIViewController {
                 print(error.localizedDescription)
             })
         }
-        else {
-            TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
-                self.favoriteCountLabel.text = String(tweet.favoritesCount)
-                self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
-            }, failure: { (error: Error) in
-                print(error.localizedDescription)
-            })
-        }
+        
+        didFavorite = !didFavorite
     }
     
     override func didReceiveMemoryWarning() {
