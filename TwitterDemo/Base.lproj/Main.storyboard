@@ -64,10 +64,10 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kcM-o4-Ptw" id="wky-vf-jFu">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYn-aq-6ez" userLabel="Profile Name Label">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WYn-aq-6ez" userLabel="Profile Name Label">
                                                     <rect key="frame" x="56" y="24" width="33" height="15"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -79,7 +79,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-Ot-C3w">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-Ot-C3w">
                                                     <rect key="frame" x="303" y="24" width="31" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -140,7 +140,7 @@
                                                 <constraint firstItem="mht-hJ-qJK" firstAttribute="leading" secondItem="wky-vf-jFu" secondAttribute="leading" constant="56" id="8cm-19-IMN"/>
                                                 <constraint firstItem="WYn-aq-6ez" firstAttribute="leading" secondItem="qDi-4k-j7g" secondAttribute="trailing" constant="8" id="E2b-3e-Rdv"/>
                                                 <constraint firstAttribute="bottom" secondItem="mht-hJ-qJK" secondAttribute="bottom" constant="8" id="P4I-eW-s9o"/>
-                                                <constraint firstItem="mO0-Ot-C3w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jgk-o9-OjV" secondAttribute="trailing" constant="8" id="POW-YJ-HGe"/>
+                                                <constraint firstItem="mO0-Ot-C3w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jgk-o9-OjV" secondAttribute="trailing" priority="999" constant="8" id="POW-YJ-HGe"/>
                                                 <constraint firstAttribute="bottom" secondItem="cO0-0L-TQk" secondAttribute="bottom" constant="8" id="QK8-VP-fuo"/>
                                                 <constraint firstItem="48o-Mq-lAE" firstAttribute="leading" secondItem="mht-hJ-qJK" secondAttribute="trailing" constant="16" id="Rea-UQ-Z3n"/>
                                                 <constraint firstItem="48o-Mq-lAE" firstAttribute="top" secondItem="LXd-pN-6Hi" secondAttribute="bottom" constant="8" id="TXy-1L-T13"/>
@@ -423,7 +423,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eYY-s8-6NP">
-                                <rect key="frame" x="8" y="74" width="359" height="541"/>
+                                <rect key="frame" x="8" y="74" width="359" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
