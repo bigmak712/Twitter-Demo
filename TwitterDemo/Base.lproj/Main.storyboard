@@ -79,7 +79,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-Ot-C3w">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-Ot-C3w">
                                                     <rect key="frame" x="303" y="24" width="31" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -101,14 +101,14 @@
                                                         <segue destination="nAj-aG-2Bc" kind="push" identifier="replySegue" id="m5d-d0-ONU"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO0-0L-TQk">
-                                                    <rect key="frame" x="167" y="70" width="30" height="21.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cO0-0L-TQk" userLabel="Favorite Button">
+                                                    <rect key="frame" x="167" y="70" width="45" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <state key="normal" title="Like">
+                                                    <state key="normal" title="Favorite">
                                                         <color key="titleColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="likeButtonTapped:" destination="kcM-o4-Ptw" eventType="touchUpInside" id="C5d-5u-ZhQ"/>
+                                                        <action selector="favoriteButtonTapped:" destination="kcM-o4-Ptw" eventType="touchUpInside" id="eap-cT-4Bl"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48o-Mq-lAE">
@@ -140,6 +140,7 @@
                                                 <constraint firstItem="mht-hJ-qJK" firstAttribute="leading" secondItem="wky-vf-jFu" secondAttribute="leading" constant="56" id="8cm-19-IMN"/>
                                                 <constraint firstItem="WYn-aq-6ez" firstAttribute="leading" secondItem="qDi-4k-j7g" secondAttribute="trailing" constant="8" id="E2b-3e-Rdv"/>
                                                 <constraint firstAttribute="bottom" secondItem="mht-hJ-qJK" secondAttribute="bottom" constant="8" id="P4I-eW-s9o"/>
+                                                <constraint firstItem="mO0-Ot-C3w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jgk-o9-OjV" secondAttribute="trailing" constant="8" id="POW-YJ-HGe"/>
                                                 <constraint firstAttribute="bottom" secondItem="cO0-0L-TQk" secondAttribute="bottom" constant="8" id="QK8-VP-fuo"/>
                                                 <constraint firstItem="48o-Mq-lAE" firstAttribute="leading" secondItem="mht-hJ-qJK" secondAttribute="trailing" constant="16" id="Rea-UQ-Z3n"/>
                                                 <constraint firstItem="48o-Mq-lAE" firstAttribute="top" secondItem="LXd-pN-6Hi" secondAttribute="bottom" constant="8" id="TXy-1L-T13"/>
@@ -157,7 +158,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="likeButton" destination="cO0-0L-TQk" id="Mz9-PM-lFL"/>
+                                            <outlet property="favoriteButton" destination="cO0-0L-TQk" id="72m-8q-aGY"/>
                                             <outlet property="profileNameLabel" destination="WYn-aq-6ez" id="pCK-Nt-Xeu"/>
                                             <outlet property="profilePhotoButton" destination="qDi-4k-j7g" id="YAE-1x-mw4"/>
                                             <outlet property="replyButton" destination="mht-hJ-qJK" id="WL6-DT-YI6"/>
@@ -651,8 +652,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="sse-rC-rNH"/>
         <segue reference="fDC-zC-ewe"/>
-        <segue reference="acL-lO-jQ1"/>
+        <segue reference="mS5-gU-4na"/>
+        <segue reference="VgJ-Wh-aaf"/>
     </inferredMetricsTieBreakers>
 </document>

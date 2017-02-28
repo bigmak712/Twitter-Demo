@@ -25,6 +25,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         composeButton.setImage(UIImage(named: "edit-icon"), for: .normal)
         
+        /*
         TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> () in
             
             self.tweets = tweets
@@ -38,7 +39,26 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }, failure: { (error: Error) in
             print(error.localizedDescription)
         })
+        */
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        TwitterClient.sharedInstance?.homeTimeLine(success: { (tweets: [Tweet]) -> () in
+            
+            self.tweets = tweets
+            /*
+             for tweet in tweets {
+             print(tweet.text!)
+             }
+             */
+            self.tableView.reloadData()
+            
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })
+        
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,7 +69,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.tweet = tweets[indexPath.row]
-        
+
         return cell
 
     }
@@ -110,7 +130,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let cell = button.superview?.superview as! UITableViewCell
                 let indexPath = tableView.indexPath(for: cell)
                 let tweet = tweets[(indexPath?.row)!]
-                vc.user = tweet.user
+                vc.user = User.currentUser
                 vc.replyText = "@" + String(describing: tweet.screenname!) + " "
             }
         }

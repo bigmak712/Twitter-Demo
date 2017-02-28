@@ -106,14 +106,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    /*func sendTweet(status: String, success: @escaping () -> (), failure: @escaping (Error) -> ()) {
-        post("https://api.twitter.com/1.1/statuses/update.json?status=" + status, parameters: ["status": status], progress: nil, success: { (URLSessionDataTask, response: Any?) in
-            success()
-        }, failure: { (URLSessionDataTask, error: Error) in
-            failure(error)
-        })
-    }*/
-    
     func retweet(tweetID: Int, success: @escaping (Tweet) -> (), failure: @escaping (Error) -> ()) {
         post("1.1/statuses/retweet/\(tweetID).json", parameters: ["id":tweetID], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             

@@ -24,9 +24,6 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var composeButton: UIButton!
     
-    var didRetweet: Bool = false
-    var didFavorite: Bool = false
-    
     var tweet: Tweet!
     var tweetID: Int = 0
     
@@ -59,16 +56,13 @@ class TweetDetailsViewController: UIViewController {
         retweetCountLabel.text = String(tweet.retweetCount)
         favoriteCountLabel.text = String(tweet.favoritesCount)
         
-        didRetweet = tweet.retweeted
-        didFavorite = tweet.favorited
-        
-        if didRetweet {
+        if tweet.retweeted {
             retweetButton.setImage(UIImage(named: "retweet-icon-green"), for: .normal)
         }
         else {
             retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
         }
-        if didFavorite {
+        if tweet.favorited {
             favoriteButton.setImage(UIImage(named: "favor-icon-red"), for: .normal)
         }
         else {
@@ -77,12 +71,12 @@ class TweetDetailsViewController: UIViewController {
     }
     
     @IBAction func onReply(_ sender: Any) {
-        print("reply")
+        //print("reply")
     }
     
     @IBAction func onRetweet(_ sender: Any) {
         
-        if didRetweet {
+        if tweet.retweeted {
             TwitterClient.sharedInstance?.unretweet(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.retweetButton.setImage(UIImage(named: "retweet-icon"), for: .normal)
             }, failure: { (error: Error) in
@@ -101,12 +95,11 @@ class TweetDetailsViewController: UIViewController {
         }
         self.retweetCountLabel.text = String(tweet.retweetCount)
         tweet.retweeted = !tweet.retweeted
-        didRetweet = !didRetweet
     }
     
     @IBAction func onFavorite(_ sender: Any) {
         
-        if didFavorite {
+        if tweet.favorited {
             TwitterClient.sharedInstance?.unfavorite(tweetID: tweetID, success: { (tweet: Tweet) in
                 self.favoriteButton.setImage(UIImage(named: "favor-icon"), for: .normal)
             }, failure: { (error: Error) in
@@ -126,7 +119,6 @@ class TweetDetailsViewController: UIViewController {
         }
         self.favoriteCountLabel.text = String(tweet.favoritesCount)
         tweet.favorited = !tweet.favorited
-        didFavorite = !didFavorite
     }
     
     override func didReceiveMemoryWarning() {
