@@ -23,7 +23,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: URL(string: "mytwitterdemo://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             let url = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
             
         }, failure:{ (error: Error?) in
             print("error: \(error?.localizedDescription)")
@@ -84,7 +84,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     class func sendTweet(status: String, callBack: @escaping (_ response: Tweet?, _ error: Error?) -> Void) {
-        print("sending tweet")
         
         guard let encodedStatus = status.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         else {

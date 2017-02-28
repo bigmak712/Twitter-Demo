@@ -40,7 +40,6 @@ class Tweet: NSObject {
         }
         
         user = User(dictionary: dictionary["user"] as! NSDictionary)
-        print("username: " + String(describing: user?.name as? String))
         name = user?.name
         screenname = user?.screenname
         profileUrl = user?.profileUrl

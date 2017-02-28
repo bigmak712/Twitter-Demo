@@ -31,8 +31,8 @@ class ProfileViewController: UIViewController {
             profileImageView.setImageWith(user.profileUrl as! URL)
         }
         
-        profileNameLabel.text = user.name as String?
-        userNameLabel.text = user.screenname as String?
+        profileNameLabel.text = String(describing: user.name!)
+        userNameLabel.text = "@" + String(describing: user.screenname!)
         tweetsCountLabel.text = String(user.tweetsCount)
         followingCountLabel.text = String(user.followingCount)
         followersCountLabel.text = String(user.followersCount)
@@ -56,5 +56,11 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "composeSegue" {
+            let vc = segue.destination as! ComposeTweetViewController
+            vc.user = User.currentUser
+        }
+    }
 }

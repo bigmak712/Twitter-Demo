@@ -111,7 +111,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let indexPath = tableView.indexPath(for: cell)
                 let tweet = tweets[(indexPath?.row)!]
                 vc.user = tweet.user
-                vc.replyText = "@" + String(describing: tweet.screenname!)
+                vc.replyText = "@" + String(describing: tweet.screenname!) + " "
             }
         }
     }

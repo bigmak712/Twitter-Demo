@@ -22,6 +22,7 @@ class TweetDetailsViewController: UIViewController {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var composeButton: UIButton!
     
     var didRetweet: Bool = false
     var didFavorite: Bool = false
@@ -47,6 +48,7 @@ class TweetDetailsViewController: UIViewController {
         timestampLabel.text = String(timestamp)
         
         replyButton.setImage(UIImage(named: "reply-icon") , for: .normal)
+        composeButton.setImage(UIImage(named: "edit-icon"), for: .normal)
 
         tweetID = tweet.tweetID
         
@@ -145,10 +147,18 @@ class TweetDetailsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileSegue" {
             let vc = segue.destination as! ProfileViewController
-            
             if (sender as? UIButton) != nil {
                 vc.user = tweet.user
             }
+        }
+        else if segue.identifier == "composeSegue" {
+            let vc = segue.destination as! ComposeTweetViewController
+            vc.user = User.currentUser
+        }
+        else if segue.identifier == "replySegue" {
+            let vc = segue.destination as! ComposeTweetViewController
+            vc.user = User.currentUser
+            vc.replyText = "@" + String(describing: tweet.screenname!) + " "
         }
     }
 

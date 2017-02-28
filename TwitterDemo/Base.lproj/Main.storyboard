@@ -282,6 +282,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="onReply:" destination="3lF-Yb-yVy" eventType="touchUpInside" id="GLv-gM-mcf"/>
+                                    <segue destination="nAj-aG-2Bc" kind="push" identifier="replySegue" id="p7B-9p-bnn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBX-37-MpZ">
@@ -364,15 +365,15 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Reply"/>
                                 <connections>
-                                    <segue destination="nAj-aG-2Bc" kind="push" identifier="replySegue" id="m3R-tf-ui9"/>
+                                    <segue destination="nAj-aG-2Bc" kind="push" identifier="composeSegue" id="m3R-tf-ui9"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="composeButton" destination="ypw-b0-fr0" id="D3n-yB-yBg"/>
                         <outlet property="descriptionLabel" destination="wr7-sb-qcv" id="GvU-5h-t8F"/>
                         <outlet property="favoriteButton" destination="FIP-qS-Agb" id="Py1-0f-Gox"/>
                         <outlet property="favoriteCountLabel" destination="r5c-3K-mIX" id="z4R-lK-Nld"/>
@@ -502,7 +503,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac1-7I-opi">
-                                <rect key="frame" x="166" y="133" width="42" height="21"/>
+                                <rect key="frame" x="166" y="129" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -586,7 +587,7 @@
                             <constraint firstItem="Ac1-7I-opi" firstAttribute="centerX" secondItem="diz-oo-B8o" secondAttribute="centerX" id="fEC-YM-3Fy"/>
                             <constraint firstItem="RxV-gl-Hma" firstAttribute="top" secondItem="4LV-ku-Vso" secondAttribute="bottom" constant="8" id="fhO-VM-5qb"/>
                             <constraint firstItem="wG3-Wn-yAb" firstAttribute="leading" secondItem="diz-oo-B8o" secondAttribute="leading" id="hiM-Yx-1KT"/>
-                            <constraint firstItem="Ac1-7I-opi" firstAttribute="top" secondItem="RxV-gl-Hma" secondAttribute="bottom" constant="8" id="iI7-8q-c6Q"/>
+                            <constraint firstItem="Ac1-7I-opi" firstAttribute="top" secondItem="RxV-gl-Hma" secondAttribute="bottom" constant="4" id="iI7-8q-c6Q"/>
                             <constraint firstItem="He0-8Y-I3Z" firstAttribute="top" secondItem="wG3-Wn-yAb" secondAttribute="bottom" constant="16" id="jQl-uh-hUm"/>
                             <constraint firstItem="pqY-k6-RT9" firstAttribute="top" secondItem="WnA-5V-bvv" secondAttribute="bottom" id="mKs-fP-7I4"/>
                             <constraint firstItem="RxV-gl-Hma" firstAttribute="centerX" secondItem="diz-oo-B8o" secondAttribute="centerX" id="nRR-zV-Dhp"/>
@@ -650,8 +651,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="sse-rC-rNH"/>
         <segue reference="fDC-zC-ewe"/>
         <segue reference="acL-lO-jQ1"/>
-        <segue reference="sse-rC-rNH"/>
     </inferredMetricsTieBreakers>
 </document>
